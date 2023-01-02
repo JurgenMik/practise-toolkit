@@ -16,19 +16,18 @@ const GET_Launches = gql`
 
 function LaunchTimes() {
 
-    const { data } = useQuery(GET_Launches);
+    const { loading, error, data } = useQuery(GET_Launches);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error</p>;
 
     return (
         <div>
             {data.launches.map((launch : any) => {
                 return (
                     <div key={launch.launch_date_utc}>
-                        <p>
-                            {launch.launch_date_utc}
-                        </p>
-                        <p>
-                            {launch.launch_site.site_id}
-                        </p>
+                        <p>{launch.launch_date_utc}</p>
+                        <p>{launch.launch_site.site_id}</p>
                     </div>
                 )
             })}
