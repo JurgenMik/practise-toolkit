@@ -1,11 +1,12 @@
 import React from 'react';
 import LaunchTimes from './components/LaunchTimes';
-import {ApolloClient, ApolloProvider, HttpLink} from "@apollo/client";
+import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'https://api.spacex.land/graphql/',
-  }),
+    cache: new InMemoryCache(),
+    link: new HttpLink({
+        uri: 'https://api.spacex.land/graphql/',
+    }),
 })
 
 function App() {
