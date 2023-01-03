@@ -2,6 +2,7 @@ import React from 'react';
 import LaunchTimes from './components/LaunchTimes';
 import Rocket from './components/Rocket';
 import Create from './mutations/Create';
+import Edit from './mutations/Edit';
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
 const clientOne = new ApolloClient({
@@ -27,6 +28,7 @@ function App() {
         </ApolloProvider>
         <ApolloProvider client={clientTwo}>
             <Create />
+            <Edit />
         </ApolloProvider>
         </>
   );
