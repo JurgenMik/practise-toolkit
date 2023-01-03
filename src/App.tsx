@@ -4,6 +4,7 @@ import Rocket from './components/Rocket';
 import Create from './mutations/Create';
 import Edit from './mutations/Edit';
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
+import Delete from "./mutations/Delete";
 
 const clientOne = new ApolloClient({
     cache: new InMemoryCache(),
@@ -29,6 +30,7 @@ function App() {
         <ApolloProvider client={clientTwo}>
             <Create />
             <Edit />
+            <Delete />
         </ApolloProvider>
         </>
   );
