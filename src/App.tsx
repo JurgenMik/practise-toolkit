@@ -3,8 +3,9 @@ import LaunchTimes from './components/LaunchTimes';
 import Rocket from './components/Rocket';
 import Create from './mutations/Create';
 import Edit from './mutations/Edit';
-import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 import Delete from "./mutations/Delete";
+import Counter from "./components/Counter";
+import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
 const clientOne = new ApolloClient({
     cache: new InMemoryCache(),
@@ -32,6 +33,7 @@ function App() {
             <Edit />
             <Delete />
         </ApolloProvider>
+            <Counter />
         </>
   );
 }
