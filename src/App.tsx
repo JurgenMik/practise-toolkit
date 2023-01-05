@@ -5,6 +5,7 @@ import Create from './mutations/Create';
 import Edit from './mutations/Edit';
 import Delete from "./mutations/Delete";
 import Counter from "./components/Counter";
+import Cart from "./components/Cart";
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
 const clientOne = new ApolloClient({
@@ -34,6 +35,7 @@ function App() {
             <Delete />
         </ApolloProvider>
             <Counter />
+            <Cart />
         </>
   );
 }
