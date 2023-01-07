@@ -3,7 +3,7 @@ import {useSelector, connect} from "react-redux";
 
 function Counter(props : any) {
 
-    const counter = useSelector((state : any) => state.counter);
+    const counter = useSelector((state : any) : { counter: number } => state.counter);
 
     const handleCounterInc = () => {
         props.dispatch({ type: 'INCREMENT'});
@@ -26,7 +26,7 @@ function Counter(props : any) {
     )
 }
 
-const mapStateToProps = (state : any) => ({
+const mapStateToProps = ( state: any ): { counter: number } => ({
     counter: state.counter
 });
 
