@@ -23,11 +23,31 @@ const reducerCart = (state : any = [], action: any | object) => {
         default:
             return state;
     }
-}
+};
+
+const reducerTodo = (state : any = [], action: any | object) => {
+    switch(action.type) {
+        case 'AddTodo':
+            let todo : object = {id : action.id, activity: action.activity, completed: action.completed};
+            return state.concat(todo);
+        case 'UpdateTodo':
+            let todos : object[] = [...state];
+            todos.map((todo : any) => {
+                if (todo.id === action.id) { return todo.completed = true;}
+                return todos;
+            })
+            return state;
+        case 'RemoveCompleted':
+            return state.filter((todo : any) => !todo.completed);
+        default:
+            return state;
+    }
+};
 
 const rootReducer = combineReducers({
     counter: reducerCounter,
-    cart: reducerCart
+    cart: reducerCart,
+    todo: reducerTodo
 })
 
 export default rootReducer;
