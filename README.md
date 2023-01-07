@@ -2,6 +2,7 @@ This is a practise repository.
 ## Table of Contents
 * <strong>Overview</strong>
     * <strong>Redux</strong>
+    * <strong>TypeScript</strong>
     * <strong>GraphQL</strong>
     * <strong>React hooks</strong>
     * <strong>Performance</strong>
@@ -17,3 +18,8 @@ The basic idea behind Redux is to <strong>centralize</strong> the application's 
 GraphQL is a <strong>query</strong> language for your API that allows clients to request
 <strong>specific</strong> data and to receive exactly what they need, rather than a fixed set of data. It provides a flexible way to request data from a server and is often used as an <strong>alternative</strong> to REST APIs.
 GraphQL is often used with a client-side library like Apollo 
+
+![image](https://user-images.githubusercontent.com/89903354/211154092-75b1f00a-de55-49ea-a6b8-30b755ad8684.png)
+
+TypeScript is a programming language that is a <strong>typed</strong> superset of JavaScript. It was developed and is maintained by Microsoft. TypeScript adds <strong>optional</strong> static typing to JavaScript, 
+which can help <strong>improve</strong> the quality and maintainability of your code.
