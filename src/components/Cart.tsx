@@ -3,7 +3,13 @@ import {useSelector, connect} from "react-redux";
 
 function Cart(props : any) {
 
-    const cartItems = useSelector((state: any) => state.cart);
+    interface item {
+        id: number,
+        quantity: number,
+        price: number
+    }
+
+    const cartItems = useSelector((state: any): [] => state.cart);
 
     const handleAddToCart = (itemId : number, price : number, quantity : number) => {
         props.dispatch({ type: 'AddToCart', itemId, price, quantity});
@@ -13,9 +19,13 @@ function Cart(props : any) {
         props.dispatch({ type: 'RemoveFromCart', itemId});
     }
 
+    const handleRemoveAll = () => {
+        props.dispatch({ type: 'RemoveAllFromCart' });
+    }
+
     return (
         <div>
-            {cartItems.map((item : any) => {
+            {cartItems.map((item : item) => {
                 return (
                     <div key={item.id}>
                         <p>
@@ -35,6 +45,9 @@ function Cart(props : any) {
             })}
             <button onClick={e => handleAddToCart(Math.floor(Math.random() * 10) + 1, 10, 5)}>
                 add To cart
+            </button>
+            <button onClick={handleRemoveAll}>
+                remove all
             </button>
         </div>
     )

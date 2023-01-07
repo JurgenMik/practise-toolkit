@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const reducerCounter = (state : any = { counter : 0 }, action : any) => {
+const reducerCounter = (state : any = { counter : 0 }, action : any | object) => {
     switch (action.type) {
         case 'INCREMENT':
             return {...state, counter: state.counter + 1};
@@ -11,13 +11,15 @@ const reducerCounter = (state : any = { counter : 0 }, action : any) => {
     }
 };
 
-const reducerCart = (state : any = [], action : any ) => {
+const reducerCart = (state : any = [], action: any | object) => {
     switch (action.type) {
         case 'AddToCart':
-            let item : any = {id : action.itemId, price: action.price, quantity: action.quantity};
+            let item : object = {id : action.itemId, price: action.price, quantity: action.quantity};
             return state.concat(item);
         case 'RemoveFromCart':
             return state.filter((item : any) => item.id !== action.itemId);
+        case 'RemoveAllFromCart':
+            return [];
         default:
             return state;
     }
