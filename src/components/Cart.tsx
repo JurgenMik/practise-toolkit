@@ -1,18 +1,17 @@
 import React from 'react';
+import {CartInterface} from "../Interfaces/interface";
 import {useSelector, connect} from "react-redux";
 
 function Cart(props : any) {
 
-    interface item {
-        id: number,
-        quantity: number,
-        price: number
-    }
-
-    const cartItems = useSelector((state: any): [] => state.cart);
+    const cartItems = useSelector((state : any): CartInterface[] => state.cart);
 
     const handleAddToCart = (itemId : number, price : number, quantity : number) => {
         props.dispatch({ type: 'AddToCart', itemId, price, quantity});
+    }
+
+    const handleUpdateItemQnt = (itemId : number, operation : string) => {
+        props.dispatch({ type: 'UpdateItemQnt', operation: operation, itemId});
     }
 
     const handleRemoveFromCart = (itemId : number) => {
@@ -25,15 +24,17 @@ function Cart(props : any) {
 
     return (
         <div>
-            {cartItems.map((item : item) => {
+            {cartItems.map((item : CartInterface) => {
                 return (
                     <div key={item.id}>
                         <p>
                             id:{item.id}
                         </p>
+                        <span onClick={e => handleUpdateItemQnt(item.id, 'decrement')}>-</span>
                         <p>
-                            qnt:{item.quantity}
+                            qnt: {item.quantity}
                         </p>
+                        <span onClick={e => handleUpdateItemQnt(item.id, 'increment')}>+</span>
                         <p>
                             price:${item.price}
                         </p>
