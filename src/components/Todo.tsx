@@ -1,15 +1,10 @@
 import React from 'react';
+import {TodoInterface} from '../Interfaces/interface';
 import {useSelector, connect} from "react-redux";
 
 function Todo(props : any) {
 
-    interface Todo {
-       id: number,
-       activity: string,
-       completed: boolean
-    }
-
-    const todos = useSelector((state: any): [] => state.todo);
+    const todos = useSelector((state: any): TodoInterface[] => state.todo);
 
     const handleNewTodo = (id : number, activity: string, completed : boolean) => {
         props.dispatch({ type: 'AddTodo', id, activity, completed});
@@ -23,9 +18,13 @@ function Todo(props : any) {
         props.dispatch({ type: 'RemoveCompleted'});
     }
 
+    const handleRemoveTodo = (id : number) => {
+        props.dispatch({ type: 'RemoveTodo', id});
+    }
+
     return (
         <div>
-            {todos.map((todo : Todo) => {
+            {todos.map((todo : TodoInterface) => {
                 return (
                     <div key={todo.id}>
                         <h1>
@@ -36,6 +35,9 @@ function Todo(props : any) {
                             checked={todo.completed}
                             onChange={e => handleCheckBoxChange(todo.id)}
                         />
+                        <span onClick ={e => handleRemoveTodo(todo.id)}>
+                            X
+                        </span>
                     </div>
                 )
             })}

@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import {TodoInterface} from '../Interfaces/interface';
 
 const reducerCounter = (state : any = { counter : 0 }, action : any | object) => {
     switch (action.type) {
@@ -25,20 +26,22 @@ const reducerCart = (state : any = [], action: any | object) => {
     }
 };
 
-const reducerTodo = (state : any = [], action: any | object) => {
+const reducerTodo = (state : TodoInterface[] = [], action: { type: string, id : number, activity: string, completed: boolean}): TodoInterface[] => {
     switch(action.type) {
         case 'AddTodo':
-            let todo : object = {id : action.id, activity: action.activity, completed: action.completed};
+            let todo = {id : action.id, activity: action.activity, completed: action.completed};
             return state.concat(todo);
         case 'UpdateTodo':
-            let todos : object[] = [...state];
-            todos.map((todo : any) => {
+            let todos = [...state];
+            todos.map((todo : TodoInterface) => {
                 if (todo.id === action.id) { return todo.completed = true;}
                 return todos;
             })
             return state;
         case 'RemoveCompleted':
-            return state.filter((todo : any) => !todo.completed);
+            return state.filter((todo) => !todo.completed);
+        case 'RemoveTodo':
+            return state.filter((todo) => todo.id !== action.id);
         default:
             return state;
     }
