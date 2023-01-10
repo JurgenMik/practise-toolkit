@@ -56,10 +56,22 @@ const reducerTodo = (state : TodoInterface[] = [], action: { type: string, id: n
     }
 };
 
+const reducerUser = (state = {id: 0, name: '', username: '', error: ''}, action: {type: string, error: any | object, payload: {id?: number, name?: string, username?: string}}) => {
+    switch(action.type) {
+        case 'GET_Success':
+            return {...state, id: action.payload.id, name: action.payload.name, username: action.payload.username};
+        case 'GET_Error':
+            return {...state, error: action.error.message};
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
     counter: reducerCounter,
     cart: reducerCart,
-    todo: reducerTodo
+    todo: reducerTodo,
+    user: reducerUser
 })
 
 export default rootReducer;
