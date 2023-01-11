@@ -62,6 +62,10 @@ const reducerUser = (state = {id: 0, name: '', username: '', error: ''}, action:
             return {...state, id: action.payload.id, name: action.payload.name, username: action.payload.username};
         case 'GET_Error':
             return {...state, error: action.error.message};
+        case 'DELETE_Success':
+            return action.payload;
+        case 'PUT_Success':
+            return {...state, username: action.payload.username};
         default:
             return state;
     }
