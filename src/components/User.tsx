@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import {useSelector, connect} from "react-redux";
 
 function User(props : any) {
@@ -11,33 +10,49 @@ function User(props : any) {
     }, [])
 
     const handleGet = (): void => {
-        axios.get('https://jsonplaceholder.typicode.com/users/5')
-            .then((response => {
-                props.dispatch({ type: 'GET_Success', payload: response.data});
-            }))
-            .catch(error => {
-                props.dispatch({ type: 'GET_Error', error: error});
-            });
+        props.dispatch({
+            type: 'GET',
+            meta: {
+                api: {
+                    url: 'https://jsonplaceholder.typicode.com/users/5',
+                    method: 'get',
+                    onSuccess: 'GET_Success',
+                    onError: 'GET_Error'
+                }
+            }
+        });
     }
 
     const handleDeleteUser = (): void => {
-        axios.delete(`https://jsonplaceholder.typicode.com/users/5`)
-            .then((response => {
-                props.dispatch({ type: 'DELETE_Success', payload: response.data});
-            }))
-            .catch(error => {
-                console.log(error);
-            });
+        props.dispatch({
+            type: 'DELETE',
+            meta: {
+                api: {
+                    url: 'https://jsonplaceholder.typicode.com/users/5',
+                    method: 'delete',
+                    onSuccess: 'DELETE_Success',
+                    onError: ''
+                }
+            }
+        });
     }
 
     const handleEditUser = (name: string) => {
-        axios.put(`https://jsonplaceholder.typicode.com/users/5`, { username: name, name: user.name })
-            .then(response => {
-                props.dispatch( { type: 'PUT_Success', payload: response.data});
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        props.dispatch({
+            type: 'PUT',
+            payload: {
+                username: name,
+                name: user.name
+            },
+            meta: {
+                api: {
+                    url: 'https://jsonplaceholder.typicode.com/users/5',
+                    method: 'put',
+                    onSuccess: 'PUT_Success',
+                    onError: '',
+                }
+            }
+        });
     }
 
     return (
