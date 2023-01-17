@@ -16,7 +16,7 @@ const reducerCart = (state : CartInterface[] = [], action: {type: string, itemId
     switch (action.type) {
         case 'AddToCart':
             let item = {id : action.itemId, price: action.price, quantity: action.quantity};
-            return state.concat(item);
+            return [...state, item];
         case 'RemoveFromCart':
             return state.filter((item ) => item.id !== action.itemId);
         case 'RemoveAllFromCart':
@@ -39,7 +39,7 @@ const reducerTodo = (state : TodoInterface[] = [], action: { type: string, id: n
     switch(action.type) {
         case 'AddTodo':
             let todo = {id : action.id, activity: action.activity, completed: action.completed};
-            return state.concat(todo);
+            return [...state, todo];
         case 'UpdateTodo':
             let todos = [...state];
             todos.map((todo : TodoInterface) => {
