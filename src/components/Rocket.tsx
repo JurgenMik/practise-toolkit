@@ -1,31 +1,39 @@
 import React from 'react';
 import { useQuery } from "@apollo/react-hooks";
+import {useSelector, connect} from "react-redux";
 import gql from 'graphql-tag';
 
- const id = 'falcon1'
+    const id = 'falcon1'
 
-const GET_Rocket = gql`
-   query($rocketId: ID!) {
-      rocket(id: $rocketId) {
-        company
-        name
-      }
-    }
-`;
+    const GET_Rocket = gql`
+       query($rocketId: ID!) {
+          rocket(id: $rocketId) {
+            company
+            name
+          }
+        }
+    `;
 
-function Rocket() {
+function Rocket(props: any) {
 
-    const { error, data } = useQuery(GET_Rocket, {
-        variables: { rocketId: id}
+    const rocket = useSelector((state: any) => state.rocket);
+
+     useQuery(GET_Rocket, {
+        variables: { rocketId: id},
+        onCompleted: (data) => {
+            props.dispatch({ type: 'query_Rocket', data});
+        },
+        onError: (error) => {
+            props.dispatch({ type: 'query_Rocket_Error', error});
+        }
     });
-
-    if (error) return <p>Error</p>;
 
     return (
         <div>
-            <p>{data.rocket.name}</p>
+            <p>{rocket.name}</p>
+            <p>{rocket.error}</p>
         </div>
     )
 }
 
-export default Rocket;
+export default connect()(Rocket);
