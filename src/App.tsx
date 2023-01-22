@@ -8,6 +8,7 @@ import Counter from "./components/Counter";
 import Cart from "./components/Cart";
 import Todo from "./components/Todo";
 import User from "./components/User";
+import Hooks from "./hooks/Hooks";
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
 const clientOne = new ApolloClient({
@@ -40,6 +41,7 @@ function App() {
             <Cart />
             <Todo />
             <User />
+            <Hooks />
         </>
   );
 }
