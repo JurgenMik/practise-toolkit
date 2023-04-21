@@ -8,6 +8,7 @@ import Counter from "./components/Counter";
 import Cart from "./components/Cart";
 import Todo from "./components/Todo";
 import User from "./components/User";
+import Form from "./hooks/useForm";
 import Hooks from "./hooks/Hooks";
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from "@apollo/client";
 
@@ -42,6 +43,7 @@ function App() {
             <Todo />
             <User />
             <Hooks />
+            <Form />
         </>
   );
 }
